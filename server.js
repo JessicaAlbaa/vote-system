@@ -34,9 +34,11 @@ function getLocalIpAddress() {
 }
 
 function getVoteUrl() {
-  const ipAddress = getLocalIpAddress();
-  return `http://${ipAddress}:3000/vote.html?vid=${currentVoteId}`;
+  const isRender = process.env.RENDER === 'true';
+  const host = isRender ? 'https://vote-system-ehlj.onrender.com' : `http://${getLocalIpAddress()}:3000`;
+  return `${host}/vote.html?vid=${currentVoteId}`;
 }
+
 
 app.get('/qrcode', async (req, res) => {
   try {
