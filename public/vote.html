@@ -343,6 +343,10 @@
       });
     });
 
+    socket.on('reject', (msg) => {
+      alert(msg || '当前人数过多，请稍后再试');
+      socket.disconnect(); // 确保客户端断开
+    });
   </script>
 </body>
 
