@@ -15,7 +15,7 @@ const io = new Server(server, {
 let votes = [];
 let currentVoteId = 1;
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function getLocalIpAddress() {
   const interfaces = os.networkInterfaces();
