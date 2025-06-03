@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -178,15 +179,10 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, '0.0.0.0', () => {
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
   const ip = getLocalIpAddress();
-  console.log(`
-================================
-服务已启动：
-电脑端: http://localhost:3000
-手机端: http://${ip}:3000
-================================
-  `);
+  console.log(`服务运行在端口: ${PORT}`);
   QRCode.toString(getVoteUrl(), { type: 'terminal' }, (err, url) => {
     if (!err) console.log('\n终端二维码:\n' + url);
   });
